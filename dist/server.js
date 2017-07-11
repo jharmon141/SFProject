@@ -3,9 +3,6 @@ const path = require('path');
 const serveStatic = require('serve-static');
 const history = require('connect-history-api-fallback');
 const port = process.env.PORT || 5000;
-const dotenv = require('dotenv');
-
-dotenv.load();
 
 app = express();
 app.use(history());
