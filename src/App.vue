@@ -172,7 +172,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #929191;
-  margin-top: 50px;
   min-height: 100%;
 }
 
