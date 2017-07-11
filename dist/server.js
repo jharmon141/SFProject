@@ -8,17 +8,5 @@ app = express();
 app.use(history());
 app.use(serveStatic(__dirname));
 
-
-app.use(bodyParser.urlencoded({
-	extended: true,
-}));
-app.use(bodyParser.json());
-
-app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
-
 app.listen(port);
 console.log('server started '+ port);
