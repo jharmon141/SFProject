@@ -25,6 +25,11 @@ const createPerson = gql`
     mutation($firstname: String!, $lastname: String!, $dob: String!, $phone: String!, $zip: String!){
         createPerson(firstname: $firstname, lastname: $lastname, dob: $dob, phone: $phone, zip: $zip){
             id
+            firstname
+            lastname
+            dob
+            phone
+            zip
         }
     }
 `
@@ -36,7 +41,7 @@ mutation deletePerson($id: ID!) {
     }
 }
 `
-const FeedQuery = gql`
+const allPersons = gql`
 query allPersons {
     allPersons(orderBy: createdAt_DESC) {
         id
@@ -73,7 +78,6 @@ export default {
 
         submit(firstname, lastname, dob, phone, zip) {
 
-            // Mutation
             this.$apollo.mutate({
                 mutation: createPerson,
                 variables: {
@@ -86,7 +90,6 @@ export default {
                 updateQueries: {
                     allPersons: (prev, { mutationResult }) => {
                         return {
-                            // append at head of list because we sort the posts reverse chronological
                             allPersons: [mutationResult.data.createPerson, ...prev.allPersons],
                         }
                     },
@@ -131,7 +134,7 @@ export default {
     // Apollo GraphQL
     apollo: {
         allPersons: {
-            query: FeedQuery,
+            query: allPersons,
             loadingKey: 'loading',
         },
     }
